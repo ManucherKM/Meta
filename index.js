@@ -1,10 +1,10 @@
 import puppeteer from 'puppeteer';
 import dappeteer from '@chainsafe/dappeteer';
 
-async function main() {
+let METAMASK_MNEMONIC_PHRASE = "feel clump tip bubble come nominee aunt carpet drama ostrich illness display";
+let METAMASK_PASSWORD = "degradater123";
 
-    const METAMASK_MNEMONIC_PHRASE = "claim bag essay finger major zero useful moon swim spider verify traffic"
-    const METAMASK_PASSWORD = "20056manucher"
+async function main() {
 
     const browser = await dappeteer.launch(puppeteer, { metamaskVersion: 'v10.8.1', args: ["--disable-notifications"] });
 
@@ -33,15 +33,15 @@ async function main() {
 
             await pageAuth.waitForSelector("#app-content > div > div.main-container-wrapper > div > div > form > div.first-time-flow__textarea-wrapper > div.MuiFormControl-root.MuiTextField-root.first-time-flow__textarea.first-time-flow__seedphrase > div > input");
             await pageAuth.focus("#app-content > div > div.main-container-wrapper > div > div > form > div.first-time-flow__textarea-wrapper > div.MuiFormControl-root.MuiTextField-root.first-time-flow__textarea.first-time-flow__seedphrase > div > input");
-            await pageAuth.keyboard.type('version return define pair soup early combine region wonder ordinary entry surface');
+            await pageAuth.keyboard.type(mnemonicReturn());
 
             await pageAuth.click("#app-content > div > div.main-container-wrapper > div > div > form > div.first-time-flow__textarea-wrapper > div.first-time-flow__checkbox-container > div");
 
             await pageAuth.focus("#password");
-            await pageAuth.keyboard.type("degradater123");
+            await pageAuth.keyboard.type(passwordReturn());
 
             await pageAuth.focus("#confirm-password");
-            await pageAuth.keyboard.type("degradater123");
+            await pageAuth.keyboard.type(passwordReturn());
 
             await pageAuth.click("#app-content > div > div.main-container-wrapper > div > div > form > div.first-time-flow__checkbox-container > div");
 
@@ -55,7 +55,6 @@ async function main() {
             return;
         }
     });
-
     async function zero() {
         await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] });
 
@@ -66,7 +65,7 @@ async function main() {
         browser.once('targetcreated', async (target) => {
             if (target.type() === 'page') {
                 const pageMetaMask = await target.page();
-
+                await pageMetaMask.waitForTimeout(2000)
                 await pageMetaMask.waitForSelector('#app-content > div > div.main-container-wrapper > div > div.permissions-connect-choose-account > div.permissions-connect-choose-account__footer-container > div.permissions-connect-choose-account__bottom-buttons > button.button.btn--rounded.btn-primary');
                 await pageMetaMask.click('#app-content > div > div.main-container-wrapper > div > div.permissions-connect-choose-account > div.permissions-connect-choose-account__footer-container > div.permissions-connect-choose-account__bottom-buttons > button.button.btn--rounded.btn-primary');
 
@@ -75,32 +74,26 @@ async function main() {
 
                 await pageMetaMask.waitForSelector('#app-content > div > div.main-container-wrapper > div > div.request-signature__footer > button.button.btn--rounded.btn-primary.btn--large.request-signature__footer__sign-button');
                 await pageMetaMask.click('#app-content > div > div.main-container-wrapper > div > div.request-signature__footer > button.button.btn--rounded.btn-primary.btn--large.request-signature__footer__sign-button');
-
-                one()
-
-                return;
+                await pageMetaMask.close();
+                await vib();
             }
         });
 
 
     }
-    async function one() {
+    async function vib() {
 
-        await page.waitForTimeout(15000)
+        await page.waitForSelector("#__next > div.en > div > div > div.bg-dark > div.hidden.md\\:block > div > div:nth-child(1) > div > div > div > div.absolute.top-0.flex.h-full.w-full.items-center.justify-center > div.absolute.bottom-\\[30\\%\\].flex.flex-col.items-center.justify-center.left-\\[17\\%\\].w-\\[22\\%\\] > div > div.absolute.flex.h-\\[116px\\].w-full.items-end.justify-center.transition-all.delay-100.bottom-\\[-70px\\].opacity-100.xl\\:bottom-\\[-75px\\].\\32 xl\\:bottom-\\[-100px\\] > button")
+        await page.click("#__next > div.en > div > div > div.bg-dark > div.hidden.md\\:block > div > div:nth-child(1) > div > div > div > div.absolute.top-0.flex.h-full.w-full.items-center.justify-center > div.absolute.bottom-\\[30\\%\\].flex.flex-col.items-center.justify-center.left-\\[17\\%\\].w-\\[22\\%\\] > div > div.absolute.flex.h-\\[116px\\].w-full.items-end.justify-center.transition-all.delay-100.bottom-\\[-70px\\].opacity-100.xl\\:bottom-\\[-75px\\].\\32 xl\\:bottom-\\[-100px\\] > button")
 
-        async function u() {
-            console.log("Click");
-            await page.mouse.click(300, 480)
-        }
-        await page.screenshot({ path: "r.png" })
-        u()
-        // await page.waitForSelector("#__next > div.en > div > div > div.bg-dark > div.hidden.md\\:block > div > div:nth-child(1) > div > div > div > div.absolute.top-0.flex.h-full.w-full.items-center.justify-center > div.absolute.bottom-\\[30\\%\\].flex.flex-col.items-center.justify-center.left-\\[17\\%\\].w-\\[22\\%\\] > div > div.absolute.flex.h-\\[116px\\].w-full.items-end.justify-center.transition-all.delay-100.bottom-0.opacity-0.pointer-events-none > button")
-        // await page.click("#__next > div.en > div > div > div.bg-dark > div.hidden.md\\:block > div > div:nth-child(1) > div > div > div > div.absolute.top-0.flex.h-full.w-full.items-center.justify-center > div.absolute.bottom-\\[30\\%\\].flex.flex-col.items-center.justify-center.left-\\[17\\%\\].w-\\[22\\%\\] > div > div.absolute.flex.h-\\[116px\\].w-full.items-end.justify-center.transition-all.delay-100.bottom-0.opacity-0.pointer-events-none > button")
-
-        // await page.waitForSelector("#radix-30 > div > div > div > div > div.flex.flex-1.flex-col.items-start.justify-center > button")
-        // await page.click("#radix-30 > div > div > div > div > div.flex.flex-1.flex-col.items-start.justify-center > button")
-
+        await page.waitForSelector("#radix-30 > div > div > div > div > div.flex.flex-1.flex-col.items-start.justify-center > button")
+        await page.click("#radix-30 > div > div > div > div > div.flex.flex-1.flex-col.items-start.justify-center > button")
     }
 }
-
+function passwordReturn() {
+    return METAMASK_PASSWORD;
+}
+function mnemonicReturn() {
+    return METAMASK_MNEMONIC_PHRASE;
+}
 main();
