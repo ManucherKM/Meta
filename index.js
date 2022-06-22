@@ -1,12 +1,16 @@
 import puppeteer from 'puppeteer';
 import dappeteer from '@chainsafe/dappeteer';
 
-let METAMASK_MNEMONIC_PHRASE = "feel clump tip bubble come nominee aunt carpet drama ostrich illness display";
+let METAMASK_MNEMONIC_PHRASE = "disagree about require model stomach green door dinner earth child seat library";
 let METAMASK_PASSWORD = "degradater123";
 
 async function main() {
 
     const browser = await dappeteer.launch(puppeteer, { metamaskVersion: 'v10.8.1', args: ["--disable-notifications"] });
+
+    const pageEmail = await browser.newPage();
+
+    await pageEmail.goto("https://tempmail.plus/ru");
 
     const page = await browser.newPage();
 
@@ -82,12 +86,78 @@ async function main() {
 
     }
     async function vib() {
+        await page.waitForSelector("#__next > div.en > div > div > div.bg-dark > div.hidden.md\\:block > div > div:nth-child(1) > div > div > div > div.absolute.top-0.flex.h-full.w-full.items-center.justify-center > div.absolute.bottom-\\[30\\%\\].flex.flex-col.items-center.justify-center.left-\\[17\\%\\].w-\\[22\\%\\] > div");
+        await page.hover("#__next > div.en > div > div > div.bg-dark > div.hidden.md\\:block > div > div:nth-child(1) > div > div > div > div.absolute.top-0.flex.h-full.w-full.items-center.justify-center > div.absolute.bottom-\\[30\\%\\].flex.flex-col.items-center.justify-center.left-\\[17\\%\\].w-\\[22\\%\\] > div");
 
         await page.waitForSelector("#__next > div.en > div > div > div.bg-dark > div.hidden.md\\:block > div > div:nth-child(1) > div > div > div > div.absolute.top-0.flex.h-full.w-full.items-center.justify-center > div.absolute.bottom-\\[30\\%\\].flex.flex-col.items-center.justify-center.left-\\[17\\%\\].w-\\[22\\%\\] > div > div.absolute.flex.h-\\[116px\\].w-full.items-end.justify-center.transition-all.delay-100.bottom-\\[-70px\\].opacity-100.xl\\:bottom-\\[-75px\\].\\32 xl\\:bottom-\\[-100px\\] > button")
         await page.click("#__next > div.en > div > div > div.bg-dark > div.hidden.md\\:block > div > div:nth-child(1) > div > div > div > div.absolute.top-0.flex.h-full.w-full.items-center.justify-center > div.absolute.bottom-\\[30\\%\\].flex.flex-col.items-center.justify-center.left-\\[17\\%\\].w-\\[22\\%\\] > div > div.absolute.flex.h-\\[116px\\].w-full.items-end.justify-center.transition-all.delay-100.bottom-\\[-70px\\].opacity-100.xl\\:bottom-\\[-75px\\].\\32 xl\\:bottom-\\[-100px\\] > button")
 
         await page.waitForSelector("#radix-30 > div > div > div > div > div.flex.flex-1.flex-col.items-start.justify-center > button")
         await page.click("#radix-30 > div > div > div > div > div.flex.flex-1.flex-col.items-start.justify-center > button")
+
+        await page.waitForTimeout(2000)
+
+        await page.waitForSelector("#__next > div.en > div > div > div.bg-dark > div.hidden.md\\:block > div > div > div > div > div.overflow-auto > div:nth-child(2) > div > div:nth-child(2) > div > div:nth-child(1) > div.relative.z-20.min-h-\\[128px\\].w-full.rounded-lg.bg-brand-deep-blue > div > div.flex.h-\\[80px\\].flex-col > a > div > div")
+        await page.click("#__next > div.en > div > div > div.bg-dark > div.hidden.md\\:block > div > div > div > div > div.overflow-auto > div:nth-child(2) > div > div:nth-child(2) > div > div:nth-child(1) > div.relative.z-20.min-h-\\[128px\\].w-full.rounded-lg.bg-brand-deep-blue > div > div.flex.h-\\[80px\\].flex-col > a > div > div")
+
+        await page.waitForSelector("#radix-1 > div > div.px-8.text-white > form > div.mb-2.grid.grid-cols-1.gap-1.md\\:grid-cols-2.md\\:gap-8 > div:nth-child(1) > div > div > input")
+
+        await page.focus("#radix-1 > div > div.px-8.text-white > form > div.mb-2.grid.grid-cols-1.gap-1.md\\:grid-cols-2.md\\:gap-8 > div:nth-child(1) > div > div > input")
+        await page.keyboard.type("Mike");
+
+        await page.waitForSelector("#radix-1 > div > div.px-8.text-white > form > div.mb-2.grid.grid-cols-1.gap-1.md\\:grid-cols-2.md\\:gap-8 > div:nth-child(2) > div > div > input")
+        await page.focus("#radix-1 > div > div.px-8.text-white > form > div.mb-2.grid.grid-cols-1.gap-1.md\\:grid-cols-2.md\\:gap-8 > div:nth-child(2) > div > div > input")
+        await page.keyboard.type("Smith");
+
+        const textEmail = await pageEmail.$eval("#pre_button", (el) => {
+            return el.value + "@mailto.plus";
+        })
+
+        let textUsername = ""
+        if (textEmail.length > 16) {
+            for (let i = 0; i < 16; i++) {
+                textUsername += textEmail[i]
+            }
+        } else {
+            textUsername = textEmail;
+        }
+
+        await page.waitForSelector("#radix-1 > div > div.px-8.text-white > form > div.mb-2.mt-4 > div:nth-child(1) > div > div > input")
+        await page.focus("#radix-1 > div > div.px-8.text-white > form > div.mb-2.mt-4 > div:nth-child(1) > div > div > input")
+        await page.keyboard.type(textUsername);
+
+        await page.waitForSelector("#radix-1 > div > div.px-8.text-white > form > div.mb-2.mt-4 > div:nth-child(2) > div > div > input")
+        await page.focus("#radix-1 > div > div.px-8.text-white > form > div.mb-2.mt-4 > div:nth-child(2) > div > div > input")
+        await page.keyboard.type(textEmail);
+
+        await page.waitForSelector("#radix-1 > div > div.px-8.text-white > form > div.mb-2.mt-4 > div:nth-child(3) > div > div > input")
+        await page.focus("#radix-1 > div > div.px-8.text-white > form > div.mb-2.mt-4 > div:nth-child(3) > div > div > input")
+        await page.keyboard.type("Degradater123!");
+
+        await page.waitForSelector("#radix-1 > div > div.px-8.text-white > form > div.mb-2.mt-4 > div:nth-child(4) > div > div > input")
+        await page.focus("#radix-1 > div > div.px-8.text-white > form > div.mb-2.mt-4 > div:nth-child(4) > div > div > input")
+        await page.keyboard.type("Degradater123!");
+
+
+        await page.click("#radix-1 > div > div.px-8.text-white > form > button");
+        await page.waitForTimeout(3000);
+
+        await page.close()
+
+        await pageEmail.waitForTimeout(10000);
+
+        await pageEmail.reload();
+
+        await pageEmail.waitForSelector("#container-body > div.container-xl.body > div.inbox > div.mail > div")
+        await pageEmail.click("#container-body > div.container-xl.body > div.inbox > div.mail > div")
+
+        await pageEmail.waitForSelector("#info > div.overflow-auto.mb-20 > table > tbody > tr > td:nth-child(2) > div > table > tbody > tr > td > table > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td > a")
+        await pageEmail.click("#info > div.overflow-auto.mb-20 > table > tbody > tr > td:nth-child(2) > div > table > tbody > tr > td > table > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td > a")
+
+        await pageEmail.screenshot({ path: "y.png" })
+        await pageEmail.waitForTimeout(1000);
+        // await browser.close()
+
     }
 }
 function passwordReturn() {
