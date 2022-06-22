@@ -1,13 +1,14 @@
 {
   "dependencies": {
     "@chainsafe/dappeteer": "^2.4.1",
+    "node-xlsx": "^0.21.0",
     "nodemon": "^2.0.16",
     "puppeteer": "^14.4.1"
   },
   "name": "myria",
   "version": "1.0.0",
   "main": "index.js",
-  "type": "module",
+
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon inex.js"
